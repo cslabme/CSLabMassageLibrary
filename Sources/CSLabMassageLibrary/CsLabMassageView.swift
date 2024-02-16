@@ -13,7 +13,7 @@ struct ChatMessage: Hashable {
 }
 
 // チャット表示用のメインビュー
-struct CsLabMassageView: View {
+public struct CsLabMassageView: View {
 
     // 現在のチャットが完了しているかどうかを示す変数
     @State private var isCompleting: Bool = false
@@ -30,7 +30,7 @@ struct CsLabMassageView: View {
     let wss = ChatScreenModel().connect()
     
     // チャット画面のビューレイアウト
-    var body: some View {
+    public var body: some View {
         VStack {
             // スクロール可能なメッセージリストの表示
             ScrollViewReader { reader in
