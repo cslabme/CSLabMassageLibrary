@@ -12,6 +12,8 @@ struct ChatMessage: Hashable {
     let type: String
 }
 
+var roomID = "1234567"
+
 // チャット表示用のメインビュー
 public struct CsLabMassageView: View {
 
@@ -27,7 +29,7 @@ public struct CsLabMassageView: View {
     ]
     
     // WSSコネクションを行うクラス
-    let wss = ChatScreenModel().connect()
+    let wss = WebsocketConnection().connect()
     
     // チャット画面のビューレイアウト
     public var body: some View {
@@ -68,12 +70,11 @@ public struct CsLabMassageView: View {
                     isCompleting = true
                     // ユーザーのメッセージをチャットに追加
                     chat.append(ChatMessage(content: text, type:"user"))
-                    text = "" //テキストフィールドをクリア
                     Task {
                         do {
                             // OpenAIの設定
-                        
-                                                
+                            WebsocketConnection().sendmassage(roomID: roomID, message: text)
+                            text = "" //テキストフィールドをクリア
                             // チャットの生成
                             isCompleting = false
                         } catch {
@@ -93,6 +94,10 @@ public struct CsLabMassageView: View {
             .padding(.horizontal)
             .padding(.bottom, 8) // 下部のパディングを調整
         }
+    }
+    
+    func msgresive(text:String){
+        chat.append(ChatMessage(content: text, type:"system"))
     }
 }
 
