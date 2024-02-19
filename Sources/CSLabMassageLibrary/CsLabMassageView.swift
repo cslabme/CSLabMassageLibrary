@@ -28,6 +28,11 @@ public struct CsLabMassageView: View {
         ChatMessage(content: "あなたは、ユーザーの質問や会話に回答するロボットです", type:"system")
     ]
     
+    public init() {
+        // Initialization code
+        body
+    }
+    
     // WSSコネクションを行うクラス
     let wss = WebsocketConnection().connect()
     
