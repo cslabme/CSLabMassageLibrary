@@ -15,7 +15,7 @@ class WebsocketConnection: UIViewController, URLSessionTaskDelegate, URLSessionW
     var webSocketTask: URLSessionWebSocketTask?
     
     func connect() {
-        let url = URL(string: "wss://wvw7jraigf.execute-api.ap-northeast-1.amazonaws.com/production?roomId=1234567")!
+        let url = URL(string: "wss://wvw7jraigf.execute-api.ap-northeast-1.amazonaws.com/production?roomId=" + roomID)!
 
         urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
         
